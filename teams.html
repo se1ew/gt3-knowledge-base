@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Команды — GT3 HUB</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/pages.css">
+</head>
+<body class="theme-dark page-teams">
+    <div data-partial="header" data-active-href="teams.html"></div>
+
+    <main class="page-main">
+        <div class="page-header">
+            <h1 class="page-title">Команды GT3</h1>
+            <p class="page-subtitle">Профессиональные гоночные команды, выступающие в сериях GT3 по всему миру</p>
+        </div>
+
+        <!-- Панель администратора -->
+        <div class="admin-controls" id="admin-controls">
+            <h3>Панель администратора</h3>
+            <div class="admin-buttons">
+                <button class="btn-admin" id="add-team-btn">
+                    <span>+</span> Добавить команду
+                </button>
+                <button class="btn-admin secondary" id="edit-team-btn">
+                    <span>✏️</span> Редактировать
+                </button>
+            </div>
+        </div>
+
+        <!-- Сетка команд -->
+        <div class="teams-grid" id="teams-grid">
+            <!-- Команды будут сгенерированы JavaScript -->
+        </div>
+    </main>
+
+    <!-- Модальное окно команды -->
+    <div id="team-modal" class="modal" aria-hidden="true">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-team-title">Team Porsche</h2>
+                <button class="modal-close" id="team-modal-close">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="team-modal-header">
+                    <img id="modal-team-image" src="" alt="" class="team-modal-image">
+                    <div class="team-modal-info">
+                        <h3 id="modal-team-name"></h3>
+                        <div class="team-country">
+                            <span>🏁</span>
+                            <span id="modal-team-country"></span>
+                        </div>
+                        <p id="modal-team-description"></p>
+                    </div>
+                </div>
+
+                <div class="team-modal-stats">
+                    <div class="stat">
+                        <span class="stat-number" id="modal-races">0</span>
+                        <span class="stat-label">Гонок</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number" id="modal-wins">0</span>
+                        <span class="stat-label">Побед</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number" id="modal-podiums">0</span>
+                        <span class="stat-label">Подиумов</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number" id="modal-titles">0</span>
+                        <span class="stat-label">Титулов</span>
+                    </div>
+                </div>
+
+                <div class="achievements-list">
+                    <h4>Достижения</h4>
+                    <div id="modal-achievements">
+                        <!-- Достижения будут добавлены через JS -->
+                    </div>
+                </div>
+                <div class="modal-admin-actions" id="team-modal-admin">
+                    <button class="btn-admin" id="team-modal-edit">Редактировать</button>
+                    <button class="btn-admin secondary" id="team-modal-delete">Удалить</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно формы команды -->
+    <div id="team-form-modal" class="modal" aria-hidden="true">
+        <div class="modal-content" role="dialog" aria-modal="true">
+            <div class="modal-header">
+                <h2 id="team-form-title">Новая команда</h2>
+                <button class="modal-close" id="team-form-close">×</button>
+            </div>
+            <div class="modal-body">
+                <form id="team-form" class="admin-form">
+                    <div class="form-grid">
+                        <label>
+                            <span>Название</span>
+                            <input type="text" name="name" required>
+                        </label>
+                        <label>
+                            <span>Страна (коды: germany, italy ...)</span>
+                            <input type="text" name="country" required>
+                        </label>
+                        <label>
+                            <span>Год основания</span>
+                            <input type="number" name="founded" min="1800" max="2100">
+                        </label>
+                        <label>
+                            <span>Серии (через запятую)</span>
+                            <input type="text" name="series">
+                        </label>
+                        <label>
+                            <span>Автомобили (через запятую)</span>
+                            <input type="text" name="cars">
+                        </label>
+                        <label>
+                            <span>Логотип (текст)</span>
+                            <input type="text" name="logo">
+                        </label>
+                        <label>
+                            <span>Изображение (путь)</span>
+                            <input type="text" name="image">
+                        </label>
+                        <label>
+                            <span>Описание</span>
+                            <textarea name="description" rows="3"></textarea>
+                        </label>
+                    </div>
+                    <fieldset class="form-section">
+                        <legend>Статистика</legend>
+                        <div class="form-grid">
+                            <label><span>Гонок</span><input type="number" name="stats_races" min="0"></label>
+                            <label><span>Побед</span><input type="number" name="stats_wins" min="0"></label>
+                            <label><span>Подиумов</span><input type="number" name="stats_podiums" min="0"></label>
+                            <label><span>Титулов</span><input type="number" name="stats_titles" min="0"></label>
+                        </div>
+                    </fieldset>
+                    <fieldset class="form-section">
+                        <legend>Достижения</legend>
+                        <textarea name="achievements" rows="4" placeholder="Формат: год|событие|результат, по одному на строку"></textarea>
+                    </fieldset>
+                    <div class="form-actions">
+                        <button type="submit" class="btn-admin">Сохранить</button>
+                        <button type="button" class="btn-admin secondary" id="team-form-cancel">Отмена</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div data-partial="footer"></div>
+
+    <script src="js/layout.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/teams.js" defer></script>
+</body>
+</html>

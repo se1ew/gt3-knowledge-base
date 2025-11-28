@@ -1,0 +1,14 @@
+@media (min-width:768px){
+  .hero-grid{grid-template-columns:1fr 1fr}
+  .car-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media (min-width:1024px){
+  .nav-toggle{display:none}
+  .car-grid{grid-template-columns:repeat(3,1fr)}
+  .nav-toggle{display:none}
+}
+@media (max-width:767px){
+  .nav-menu{display:none;width:100%}
+  .nav-toggle{display:block}
+  .main-nav[aria-expanded="true"] .nav-menu{display:flex;flex-direction:column}
+}

@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Автомобили — GT3 HUB</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/pages.css">
+</head>
+<body class="theme-dark page-cars">
+    <div data-partial="header" data-active-href="cars.html"></div>
+
+    <main class="page-main">
+        <aside class="filters-sidebar" aria-label="Фильтры">
+            <form id="filters-form">
+                <div class="filter-group">
+                    <h4>Производитель</h4>
+                    <label><input type="checkbox" name="brand" value="acura"> Acura</label>
+                    <label><input type="checkbox" name="brand" value="aston martin"> Aston Martin</label>
+                    <label><input type="checkbox" name="brand" value="audi"> Audi</label>
+                    <label><input type="checkbox" name="brand" value="bentley"> Bentley</label>
+                    <label><input type="checkbox" name="brand" value="bmw"> BMW</label>
+                    <label><input type="checkbox" name="brand" value="chevrolet"> Chevrolet</label>
+                    <label><input type="checkbox" name="brand" value="ferrari"> Ferrari</label>
+                    <label><input type="checkbox" name="brand" value="ford"> Ford</label>
+                    <label><input type="checkbox" name="brand" value="honda"> Honda</label>
+                    <label><input type="checkbox" name="brand" value="lamborghini"> Lamborghini</label>
+                    <label><input type="checkbox" name="brand" value="lexus"> Lexus</label>
+                    <label><input type="checkbox" name="brand" value="mclaren"> McLaren</label>
+                    <label><input type="checkbox" name="brand" value="mercedes"> Mercedes</label>
+                    <label><input type="checkbox" name="brand" value="nissan"> Nissan</label>
+                    <label><input type="checkbox" name="brand" value="porsche"> Porsche</label>
+                </div>
+                <div class="filter-group">
+                    <h4>Год выпуска</h4>
+                    <input id="year-range" type="range" min="2009" max="2024" value="2024">
+                    <div id="year-value">2024</div>
+                </div>
+                <div class="filter-group">
+                    <h4>Мощность (л.с.)</h4>
+                    <input id="power-range" type="range" min="500" max="700" value="700">
+                    <div id="power-value">700+ л.с.</div>
+                </div>
+                <div class="filter-actions">
+                    <button type="button" id="clear-filters" class="btn-secondary">Сбросить фильтры</button>
+                </div>
+            </form>
+        </aside>
+
+        <section class="cars-section" aria-labelledby="cars-heading">
+            <h1 id="cars-heading">Автомобили GT3</h1>
+            <div class="car-actions-bar">
+                <div aria-live="polite" id="results-count">30 автомобилей</div>
+                <div class="car-controls">
+                    <button id="toggle-filters" class="btn-secondary mobile-only" type="button">Фильтры</button>
+                    <input type="search" id="car-search" placeholder="Поиск по названию или бренду" aria-label="Поиск автомобилей">
+                    <select id="sort-select" aria-label="Сортировка автомобилей">
+                        <option value="default">Сортировка</option>
+                        <option value="power-desc">Мощность (по убыв.)</option>
+                        <option value="power-asc">Мощность (по возр.)</option>
+                        <option value="year-desc">Год (новые)</option>
+                        <option value="year-asc">Год (старые)</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Панель администратора -->
+            <div class="admin-controls" id="admin-controls">
+                <h3>Панель администратора</h3>
+                <div class="admin-buttons">
+                    <button class="btn-admin" id="add-car-btn">
+                        <span>+</span> Добавить автомобиль
+                    </button>
+                    <button class="btn-admin secondary" id="edit-car-btn">
+                        <span>✏️</span> Редактировать
+                    </button>
+                    <button class="btn-admin secondary" id="delete-car-btn">
+                        <span>🗑️</span> Удалить
+                    </button>
+                </div>
+            </div>
+
+            <div class="car-grid" id="car-grid" role="list">
+                <!-- Карточки будут сгенерированы JavaScript -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Модальное окно с подробной информацией об автомобиле -->
+    <div id="car-detail-modal" class="modal" aria-hidden="true">
+        <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="car-detail-title">
+            <div class="modal-header">
+                <h2 id="car-detail-title">Подробнее об автомобиле</h2>
+                <button class="modal-close" id="car-detail-close" aria-label="Закрыть">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-top">
+                    <div class="modal-meta">
+                        <h3 id="detail-car-name"></h3>
+                        <p class="car-meta" id="detail-car-meta"></p>
+                        <div class="modal-tags" id="detail-car-tags"></div>
+                    </div>
+                    <img id="detail-car-image" src="" alt="" onerror="this.src='images/car-placeholder.svg'">
+                </div>
+                <div class="modal-stats" id="detail-car-stats"></div>
+                <div class="modal-details" id="detail-car-details"></div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" id="car-detail-close-footer">Закрыть</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно сравнения -->
+    <div id="comparison-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Сравнение автомобилей</h2>
+                <button id="comparison-close" class="modal-close" aria-label="Закрыть">×</button>
+            </div>
+            <div class="modal-body">
+                <div id="comparison-table">
+                    <p>Выберите автомобили для сравнения</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="clear-comparison" class="btn-secondary">Очистить сравнение</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно добавления автомобиля -->
+    <div id="add-car-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Добавить новый автомобиль</h2>
+                <button class="modal-close" id="add-car-close">×</button>
+            </div>
+            <form id="add-car-form" class="add-car-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="new-car-brand">Производитель:</label>
+                        <select id="new-car-brand" name="brand" required>
+                            <option value="">Выберите производителя</option>
+                            <option value="acura">Acura</option>
+                            <option value="aston martin">Aston Martin</option>
+                            <option value="audi">Audi</option>
+                            <option value="bentley">Bentley</option>
+                            <option value="bmw">BMW</option>
+                            <option value="chevrolet">Chevrolet</option>
+                            <option value="ferrari">Ferrari</option>
+                            <option value="ford">Ford</option>
+                            <option value="honda">Honda</option>
+                            <option value="lamborghini">Lamborghini</option>
+                            <option value="lexus">Lexus</option>
+                            <option value="mclaren">McLaren</option>
+                            <option value="mercedes">Mercedes</option>
+                            <option value="nissan">Nissan</option>
+                            <option value="porsche">Porsche</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="new-car-model">Модель:</label>
+                        <input type="text" id="new-car-model" name="model" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="new-car-generation">Поколение:</label>
+                        <input type="text" id="new-car-generation" name="generation">
+                    </div>
+                    <div class="form-group">
+                        <label for="new-car-year">Год выпуска:</label>
+                        <input type="number" id="new-car-year" name="year" min="2000" max="2030" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="new-car-engine">Двигатель:</label>
+                        <input type="text" id="new-car-engine" name="engine" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="new-car-power">Мощность (л.с.):</label>
+                        <input type="number" id="new-car-power" name="power" min="0" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="new-car-torque">Крутящий момент (Нм):</label>
+                        <input type="number" id="new-car-torque" name="torque" min="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="new-car-weight">Вес (кг):</label>
+                        <input type="number" id="new-car-weight" name="weight" min="0">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="new-car-topspeed">Макс. скорость (км/ч):</label>
+                        <input type="number" id="new-car-topspeed" name="topSpeed" min="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="new-car-image">Изображение (имя файла):</label>
+                        <input type="text" id="new-car-image" name="image" placeholder="brand model.jpg">
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit" class="btn-admin">Добавить автомобиль</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div data-partial="footer"></div>
+
+    <script src="js/layout.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/comparison.js"></script>
+    <script src="js/cars.js" defer></script>
+
+</body>
+</html>

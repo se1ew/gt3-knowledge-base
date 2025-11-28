@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Трассы — GT3 HUB</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/pages.css">
+</head>
+
+<body class="theme-dark page-tracks">
+    <div data-partial="header" data-active-href="tracks.html"></div>
+
+    <main class="page-main">
+        <section class="tracks-section" aria-labelledby="tracks-heading">
+            <h1 id="tracks-heading">Трассы GT3</h1>
+
+            <div class="track-grid" id="track-grid" role="list">
+                <!-- Карточки будут сгенерированы JavaScript -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Модальное окно трассы -->
+    <div id="track-modal" class="modal" aria-hidden="true">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-track-title">Информация о трассе</h2>
+                <button id="track-modal-close" class="modal-close" aria-label="Закрыть">×</button>
+            </div>
+            <div class="modal-body">
+                <div id="track-modal-content" class="track-modal-content">
+                    <!-- Контент будет заполнен JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div data-partial="footer"></div>
+
+    <script src="js/layout.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/tracks.js" defer></script>
+</body>
+</html>

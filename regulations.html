@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Регламенты — GT3 HUB</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/pages.css">
+</head>
+
+<body class="theme-dark page-regulations">
+    <div data-partial="header" data-active-href="regulations.html"></div>
+
+    <main class="page-main">
+        <h1 id="regs-heading">Регламент автомобилей GT3</h1>
+
+        <div class="regs-grid">
+            <!-- Технический регламент -->
+            <div class="reg-card">
+                <div class="reg-icon">⚙️</div>
+                <h3 class="reg-title">Технический регламент</h3>
+                <p class="reg-summary">Основные требования к конструкции, двигателям, аэродинамике и безопасности автомобилей GT3</p>
+                <button class="btn-details" data-reg-detail="technical" type="button">Подробнее</button>
+            </div>
+
+            <!-- Спортивный регламент -->
+            <div class="reg-card">
+                <div class="reg-icon">🏁</div>
+                <h3 class="reg-title">Спортивный регламент</h3>
+                <p class="reg-summary">Правила проведения соревнований, формат гонок и требования к командам</p>
+                <button class="btn-details" data-reg-detail="sport" type="button">Подробнее</button>
+            </div>
+
+            <!-- Общие правила -->
+            <div class="reg-card">
+                <div class="reg-icon">📋</div>
+                <h3 class="reg-title">Общие правила серии</h3>
+                <p class="reg-summary">Требования к командам, пилотам и организационные моменты</p>
+                <button class="btn-details" data-reg-detail="general" type="button">Подробнее</button>
+            </div>
+        </div>
+
+        <!-- Дополнительная информация -->
+        <div class="additional-info">
+            <h3>Ключевые характеристики GT3</h3>
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="info-value">500-700</div>
+                    <div class="info-label">Лошадиных сил</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-value">1200-1300</div>
+                    <div class="info-label">Масса, кг</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-value">290-330</div>
+                    <div class="info-label">Макс. скорость, км/ч</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-value">18-20"</div>
+                    <div class="info-label">Диаметр колес</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Детальное модальное окно для регламентов -->
+    <div id="detail-modal" class="modal detail-modal" aria-hidden="true">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="detail-title">Детальная информация</h2>
+                <button class="modal-close" id="detail-close">×</button>
+            </div>
+            <div class="detail-content" id="detail-content">
+                <!-- Контент будет заполнен JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <div data-partial="footer"></div>
+
+    <script src="js/layout.js"></script>
+    <script src="js/regulations.js" defer></script>
+</body>
+</html>

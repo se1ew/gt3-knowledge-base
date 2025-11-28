@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Пилоты — GT3 HUB</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/pages.css">
+</head>
+
+<body class="theme-dark page-pilots">
+    <div data-partial="header" data-active-href="pilots.html"></div>
+
+    <main class="page-main">
+        <div class="page-header">
+            <h1 class="page-title">Пилоты GT3</h1>
+            <p class="page-subtitle">Легенды и действующие звезды GT3 из различных чемпионатов по всему миру</p>
+        </div>
+
+        <div class="admin-controls" id="admin-controls">
+            <h3>Панель администратора</h3>
+            <div class="admin-buttons">
+                <button class="btn-admin" id="add-pilot-btn"><span>+</span> Добавить пилота</button>
+            </div>
+        </div>
+
+        <div class="filters-bar" role="tablist" aria-label="Фильтрация по сериям">
+            <button class="filter-btn active" data-series="all" aria-pressed="true">Все</button>
+            <button class="filter-btn" data-series="gtwc">GT World Challenge</button>
+            <button class="filter-btn" data-series="imsa">IMSA</button>
+            <button class="filter-btn" data-series="dtm">DTM</button>
+            <button class="filter-btn" data-series="nls">Nürburgring</button>
+        </div>
+
+        <div class="pilots-grid" id="pilots-grid" aria-live="polite">
+            <!-- Карточки пилотов будут добавлены через JavaScript -->
+        </div>
+    </main>
+
+    <div id="pilot-form-modal" class="modal" aria-hidden="true">
+        <div class="modal-content" role="dialog" aria-modal="true">
+            <div class="modal-header">
+                <h2 id="pilot-form-title">Новый пилот</h2>
+                <button class="modal-close" id="pilot-form-close">×</button>
+            </div>
+            <div class="modal-body">
+                <form id="pilot-form" class="admin-form">
+                    <div class="form-grid">
+                        <label>
+                            <span>Имя</span>
+                            <input type="text" name="name" required>
+                        </label>
+                        <label>
+                            <span>Национальность</span>
+                            <input type="text" name="nationality" required>
+                        </label>
+                        <label>
+                            <span>Флаг (эмодзи)</span>
+                            <input type="text" name="flag">
+                        </label>
+                        <label>
+                            <span>Команда</span>
+                            <input type="text" name="team">
+                        </label>
+                        <label>
+                            <span>Автомобиль</span>
+                            <input type="text" name="car">
+                        </label>
+                        <label>
+                            <span>Серии (через запятую)</span>
+                            <input type="text" name="series">
+                        </label>
+                        <label>
+                            <span>Теги (через запятую)</span>
+                            <input type="text" name="tags">
+                        </label>
+                        <label>
+                            <span>Изображение (путь)</span>
+                            <input type="text" name="image">
+                        </label>
+                    </div>
+                    <fieldset class="form-section">
+                        <legend>Главные титулы</legend>
+                        <textarea name="championships" rows="4" placeholder="Список титулов, каждый с новой строки"></textarea>
+                    </fieldset>
+                    <fieldset class="form-section">
+                        <legend>Статистика</legend>
+                        <div class="form-grid">
+                            <label><span>Побед</span><input type="number" name="stats_wins" min="0"></label>
+                            <label><span>Подиумов</span><input type="number" name="stats_podiums" min="0"></label>
+                            <label><span>Титулов</span><input type="number" name="stats_titles" min="0"></label>
+                        </div>
+                    </fieldset>
+                    <div class="form-actions">
+                        <button type="submit" class="btn-admin">Сохранить</button>
+                        <button type="button" class="btn-admin secondary" id="pilot-form-cancel">Отмена</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="pilot-detail-modal" class="modal" aria-hidden="true">
+        <div class="modal-content modal-content-wide" role="dialog" aria-modal="true">
+            <div class="modal-header">
+                <h2>Информация о пилоте</h2>
+                <button class="modal-close" id="pilot-detail-close">×</button>
+            </div>
+            <div class="modal-body" id="pilot-detail-body"></div>
+        </div>
+    </div>
+
+    <div data-partial="footer"></div>
+
+    <script src="js/layout.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/pilots.js" defer></script>
+</body>
+</html>

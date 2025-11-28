@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Чемпионы — GT3 HUB</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/pages.css">
+</head>
+<body class="theme-dark page-champions">
+    <div data-partial="header" data-active-href="champions.html"></div>
+
+    <main class="page-main">
+        <div class="page-header">
+            <h1 class="page-title">Чемпионы GT3</h1>
+            <p class="page-subtitle">История победителей и чемпионов различных серий GT3 с 2006 года по настоящее время</p>
+        </div>
+
+        <!-- Панель администратора -->
+        <div class="admin-controls" id="admin-controls">
+            <h3>Панель администратора</h3>
+            <button class="btn-admin" id="add-champion-btn">
+                <span>+</span> Добавить чемпиона
+            </button>
+        </div>
+
+        <!-- Табы серий -->
+        <div class="series-tabs">
+            <div class="series-tab active" data-series="all">Все серии</div>
+            <div class="series-tab" data-series="gtwc">GT World Challenge</div>
+            <div class="series-tab" data-series="imsa">IMSA</div>
+            <div class="series-tab" data-series="dtm">DTM</div>
+            <div class="series-tab" data-series="nls">Nürburgring</div>
+        </div>
+
+        <!-- Хронология чемпионов -->
+        <div class="timeline" id="champions-timeline">
+            <!-- Данные о чемпионах будут загружены через JavaScript -->
+        </div>
+
+        <div id="champion-form-modal" class="modal" aria-hidden="true">
+            <div class="modal-content" role="dialog" aria-modal="true">
+                <div class="modal-header">
+                    <h2 id="champion-form-title">Новый чемпион</h2>
+                    <button class="modal-close" id="champion-form-close">×</button>
+                </div>
+                <div class="modal-body">
+                    <form id="champion-form" class="admin-form">
+                        <div class="form-grid">
+                            <label>
+                                <span>Год</span>
+                                <input type="number" name="year" min="2000" max="2100" required>
+                            </label>
+                            <label>
+                                <span>Серия</span>
+                                <select name="series" required>
+                                    <option value="gtwc">GT World Challenge</option>
+                                    <option value="imsa">IMSA</option>
+                                    <option value="dtm">DTM</option>
+                                    <option value="nls">Nürburgring</option>
+                                    </select>
+                                </label>
+                                <label>
+                                    <span>Команда</span>
+                                    <input type="text" name="team_name" required>
+                                </label>
+                                <label>
+                                    <span>Автомобиль</span>
+                                    <input type="text" name="car" required>
+                                </label>
+                                <label>
+                                    <span>Изображение (путь)</span>
+                                    <input type="text" name="image">
+                                </label>
+                            </div>
+                            <fieldset class="form-section">
+                                <legend>Пилоты</legend>
+                                <textarea name="drivers" rows="3" placeholder="Каждый пилот с новой строки" required></textarea>
+                            </fieldset>
+                            <fieldset class="form-section">
+                                <legend>Статистика</legend>
+                                <div class="form-grid">
+                                    <label><span>Побед</span><input type="number" name="wins" min="0"></label>
+                                    <label><span>Подиумов</span><input type="number" name="podiums" min="0"></label>
+                                    <label><span>Очков</span><input type="number" name="points" min="0"></label>
+                                </div>
+                            </fieldset>
+                            <fieldset class="form-section">
+                                <legend>Описание</legend>
+                                <textarea name="description" rows="4" placeholder="Краткое описание сезона"></textarea>
+                            </fieldset>
+                            <div class="form-actions">
+                                <button type="submit" class="btn-admin">Сохранить</button>
+                                <button type="button" class="btn-admin secondary" id="champion-form-cancel">Отмена</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="champion-detail-modal" class="modal" aria-hidden="true">
+            <div class="modal-content modal-content-wide" role="dialog" aria-modal="true">
+                <div class="modal-header">
+                    <h2>Информация о чемпионе</h2>
+                    <button class="modal-close" id="champion-detail-close">×</button>
+                </div>
+                <div class="modal-body" id="champion-detail-body"></div>
+            </div>
+        </div>
+
+        <div data-partial="footer"></div>
+
+        <script src="js/layout.js"></script>
+        <script src="js/api.js"></script>
+        <script src="js/auth.js"></script>
+        <script src="js/champions.js" defer></script>
+    </body>
+    </html>

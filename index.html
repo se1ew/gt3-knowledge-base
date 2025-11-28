@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>GT3 HUB</title>
+    <meta name="description" content="GT3 HUB — справочник про автомобили GT3, трассы, регламенты, команды и чемпионов.">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+</head>
+
+<body class="theme-dark">
+    <div data-partial="header" data-active-href="index.html"></div>
+
+    <main class="site-main">
+        <div class="hero-background">
+            <img src="images/gt3-hero-background.jpg" alt="GT3 автомобили на трассе">
+        </div>
+
+        <section class="hero">
+            <div class="hero-intro">
+                <h1>GT3 HUB</h1>
+                <p>База знаний по автомобилям серии GT3</p>
+            </div>
+
+            <!-- Поиск в центре -->
+            <div class="hero-search">
+                <input type="text" id="main-search" placeholder="Поиск автомобилей, брендов...">
+                <div id="search-suggestions" class="search-suggestions"></div>
+            </div>
+
+            <h2 class="nav-section-title">Быстрая навигация</h2>
+
+            <div class="hero-categories">
+                <a class="card" href="cars.html">
+                    <div class="card-media">
+                        <img src="images/incar.jpg" alt="GT3 автомобили">
+                    </div>
+                    <div class="card-content">
+                        <h3>Автомобили</h3>
+                        <p>См. модели, спецификации и сравнения.</p>
+                    </div>
+                </a>
+
+                <a class="card" href="tracks.html">
+                    <div class="card-media">
+                        <img src="images/intracks.jpg" alt="Гоночные трассы">
+                    </div>
+                    <div class="card-content">
+                        <h3>Трассы</h3>
+                        <p>Интерактивная карта и профили треков.</p>
+                    </div>
+                </a>
+
+                <a class="card" href="teams.html">
+                    <div class="card-media">
+                        <img src="images/inteams.png" alt="Гоночные команды">
+                    </div>
+                    <div class="card-content">
+                        <h3>Команды</h3>
+                        <p>Профили гоночных команд и их достижения.</p>
+                    </div>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Модальное окно входа и регистрации -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="auth-modal-title">Вход в систему</h2>
+                <button class="modal-close" id="login-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <!-- Форма входа -->
+                <form id="login-form" class="auth-form active">
+                    <div class="form-group">
+                        <label for="login-email">Email</label>
+                        <input type="email" id="login-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Пароль</label>
+                        <input type="password" id="login-password" required>
+                    </div>
+                    <div id="login-error" class="error-message"></div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Войти</button>
+                    </div>
+                    <div class="auth-form-footer">
+                        Нет аккаунта? <a href="#" id="show-register">Зарегистрироваться</a>
+                    </div>
+                </form>
+
+                <!-- Форма регистрации -->
+                <form id="register-form" class="auth-form">
+                    <div class="form-group">
+                        <label for="register-email">Email</label>
+                        <input type="email" id="register-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-display-name">Имя пользователя</label>
+                        <input type="text" id="register-display-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-password">Пароль</label>
+                        <input type="password" id="register-password" minlength="6" required>
+                        <div class="form-hint">Не менее 6 символов</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-confirm-password">Подтвердите пароль</label>
+                        <input type="password" id="register-confirm-password" required>
+                    </div>
+                    <div id="register-error" class="error-message"></div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+                    </div>
+                    <div class="auth-form-footer">
+                        Уже есть аккаунт? <a href="#" id="show-login">Войти</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div data-partial="footer"></div>
+
+    <script src="js/layout.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/index.js" defer></script>
+
+</body>
+</html>
