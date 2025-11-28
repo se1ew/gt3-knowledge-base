@@ -7,7 +7,7 @@ Knowledge base about GT3 cars, tracks, teams, pilots and championships. The proj
 - 📚 Entity directories: cars, tracks, teams, pilots, champions, regulations
 - 🔐 Auth system with registration, login, JWT-based sessions and role `admin`
 - 🛠️ Admin tooling for CRUD operations via API (cars, tracks, teams, pilots, champions)
-- 🔎 Глобальный поиск по всем сущностям с главной страницы
+- 🔎 Global search for all entities from the main page
 - 🧱 Reusable partials for header/footer, responsive layout styles
 
 ## Tech Stack
@@ -115,14 +115,6 @@ partials/             # Header/footer partials
 index.html            # Landing page
 cars.html ...         # Additional sections
 ```
-
-## Roadmap Ideas
-
-- Добавить тесты (Vitest/Jest + supertest)
-- Вынести конфигурацию .env.example и подробный installation guide
-- Объединить фронтенд скрипты сборщиком (Vite/Webpack)
-- Улучшить accessibility/SEO (ARIA, meta tags, sitemap)
-- Ввести refresh-токены и менеджмент сессий
 
 ## License
 
