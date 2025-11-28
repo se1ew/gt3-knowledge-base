@@ -126,4 +126,4 @@ cars.html ...         # Additional sections
 
 ## License
 
-MIT (или укажите вашу лицензию).
+MIT.
